@@ -1,0 +1,25 @@
+import express from "express";
+import gamesController from "../conrollers/games-controller";
+
+const gamesRouter = express.Router();
+
+gamesRouter.route("")
+  .get(gamesController.getAllGames)
+  .post(gamesController.insertGame);
+
+gamesRouter.route("/:id")
+  .get(gamesController.getGameById)
+  .put(gamesController.updateGame)
+  .delete(gamesController.deleteGame);
+
+gamesRouter.route("/images/:id")
+  .get(gamesController.getImagesForGame);
+
+// gamesRouter.get("", gamesController.getAllGames);
+// gamesRouter.post("", gamesController.insertGame);
+
+// gamesRouter.get("/:id", gamesController.getGameById);
+// gamesRouter.put("/:id", gamesController.updateGame);
+// gamesRouter.delete("/:id", gamesController.deleteGame);
+
+export default gamesRouter;
