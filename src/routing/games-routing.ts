@@ -16,7 +16,11 @@ gamesRouter
 
 gamesRouter.route("/images/:id").get(gamesController.getImagesForGame);
 
-gamesRouter.route("/add-image").post(gamesController.addImageForGame);
+gamesRouter.route("/add-image")
+  .post(gamesController.addImageForGame)
+
+gamesRouter.route("/add-cover").post(gamesController.addCoverForGame)
+  
 
 // gamesRouter.get("", gamesController.getAllGames);
 // gamesRouter.post("", gamesController.insertGame);

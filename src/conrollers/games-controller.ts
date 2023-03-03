@@ -46,6 +46,16 @@ const addImageForGame = async (req: Request, res: Response) => {
   res.send(addImageForGame);
 };
 
+const addCoverForGame = async (req: Request, res: Response) => {
+  const addCoverForGame = await gamesRepositories.addCoverForGame(
+    req.body.id,
+    req.body.cover
+  );
+  res.send(addCoverForGame);
+};
+
+
+
 
 export default {
   getAllGames,
@@ -55,4 +65,5 @@ export default {
   deleteGame,
   getImagesForGame,
   addImageForGame,
+  addCoverForGame
 };

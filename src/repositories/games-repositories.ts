@@ -68,6 +68,13 @@ const addImageForGame = async (id: string, image: string) => {
   return result;
 };
 
+const addCoverForGame = async (id: string, cover: string) =>{
+  return await dbConfig.manager.query(
+    `UPDATE GAMES SET cover = ? WHERE id = ?`,
+    [cover, id]
+  )
+}
+
 
 
 export default {
@@ -77,5 +84,6 @@ export default {
   deleteGameQuerry,
   updateGameQuerry,
   getImagesForGame,
-  addImageForGame
+  addImageForGame,
+  addCoverForGame
 };
