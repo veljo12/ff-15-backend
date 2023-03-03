@@ -3,6 +3,7 @@ import "reflect-metadata";
 import express from "express";
 import gamesRouter from "../src/routing/games-routing";
 import clientRouter from "./routing/client-routing";
+import fileUploadRouter from "./common/file-upload";
 
 import dbConfig from "./common/db-config";
 import cors from 'cors';
@@ -19,6 +20,7 @@ app.use(cors());
 
 app.use("/games", gamesRouter);
 app.use("/clients", clientRouter);
+app.use(fileUploadRouter);
 
 dbConfig
   .initialize()

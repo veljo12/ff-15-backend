@@ -58,7 +58,17 @@ const getImagesForGame = async (id: string) => {
   return result;
 };
 
-// const getImagesForGame = async
+
+
+const addImageForGame = async (id: string, image: string) => {
+  const result = await dbConfig.manager.query(
+    `UPDATE GAMES SET image = ? WHERE id = ?`,
+    [image, id]
+  );
+  return result;
+};
+
+
 
 export default {
   getAllGamesQuerry,
@@ -66,5 +76,6 @@ export default {
   insertGameQuerry,
   deleteGameQuerry,
   updateGameQuerry,
-  getImagesForGame
+  getImagesForGame,
+  addImageForGame
 };

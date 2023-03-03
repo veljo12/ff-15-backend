@@ -3,17 +3,20 @@ import gamesController from "../conrollers/games-controller";
 
 const gamesRouter = express.Router();
 
-gamesRouter.route("")
+gamesRouter
+  .route("")
   .get(gamesController.getAllGames)
   .post(gamesController.insertGame);
 
-gamesRouter.route("/:id")
+gamesRouter
+  .route("/:id")
   .get(gamesController.getGameById)
   .put(gamesController.updateGame)
   .delete(gamesController.deleteGame);
 
-gamesRouter.route("/images/:id")
-  .get(gamesController.getImagesForGame);
+gamesRouter.route("/images/:id").get(gamesController.getImagesForGame);
+
+gamesRouter.route("/add-image").post(gamesController.addImageForGame);
 
 // gamesRouter.get("", gamesController.getAllGames);
 // gamesRouter.post("", gamesController.insertGame);
