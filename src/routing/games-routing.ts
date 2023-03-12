@@ -1,11 +1,12 @@
 import express from "express";
 import gamesController from "../conrollers/games-controller";
+import authMiddleware from "../middleware/auth-middleware";
 
 const gamesRouter = express.Router();
 
 gamesRouter
   .route("")
-  .get(gamesController.getAllGames)
+  .get(authMiddleware ,gamesController.getAllGames)
   .post(gamesController.insertGame);
 
 gamesRouter

@@ -4,6 +4,7 @@ import express from "express";
 import gamesRouter from "../src/routing/games-routing";
 import clientRouter from "./routing/client-routing";
 import fileUploadRouter from "./common/file-upload";
+import userRouter from "./routing/user-routing";
 
 import dbConfig from "./common/db-config";
 import cors from 'cors';
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use("/games", gamesRouter);
 app.use("/clients", clientRouter);
+app.use(userRouter)
 app.use(fileUploadRouter);
 
 dbConfig
