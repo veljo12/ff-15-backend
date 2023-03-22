@@ -6,7 +6,7 @@ const gamesRouter = express.Router();
 
 gamesRouter
   .route("")
-  .get(authMiddleware ,gamesController.getAllGames)
+  .get(gamesController.getAllGames) //authMiddleware (dodati middleware)
   .post(gamesController.insertGame);
 
 gamesRouter
@@ -22,12 +22,4 @@ gamesRouter.route("/add-image")
 
 gamesRouter.route("/add-cover").post(gamesController.addCoverForGame)
   
-
-// gamesRouter.get("", gamesController.getAllGames);
-// gamesRouter.post("", gamesController.insertGame);
-
-// gamesRouter.get("/:id", gamesController.getGameById);
-// gamesRouter.put("/:id", gamesController.updateGame);
-// gamesRouter.delete("/:id", gamesController.deleteGame);
-
 export default gamesRouter;

@@ -13,9 +13,8 @@ const login = async (u: User) => {
         const token = jwt.sign({username: u.username, isAdmin: isAdmin}, 'SECRET' );
         return {success: true, token}
       }
-    else {  const isAdmin = result[0].isAdmin === 0; 
-    const token = jwt.sign({username: u.username, isAdmin: isAdmin}, 'SECRET' );
-    return {success: true, token}};
+    else { 
+    return {success: false}};
 };
 
     
