@@ -27,6 +27,8 @@ const deleteClient = async (req: Request, res: Response) => {
     res.send(deleteGame);
   };
 
+
+
 export default{
     getAllClients,
     getClientById,

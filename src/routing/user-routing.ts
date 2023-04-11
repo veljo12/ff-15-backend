@@ -21,4 +21,7 @@ userRouter.route("/add-image").post(userController.addImageForUser);
 userRouter.route("/add-cover")
                 .post(userController.addCoverForUser);
 
+
+userRouter.route('/:user1_id/friends/:user2_id').get(userController.areFriends);
+
 export default userRouter;

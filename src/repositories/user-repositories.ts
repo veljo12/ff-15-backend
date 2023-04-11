@@ -67,7 +67,25 @@ const addCoverForUser = async (id: string, cover: string) =>{
   )
 }
 
+const areFriends = async (user1_id: string, user2_id: string) => {
+  try {
+    const result = await dbConfig.manager.query(`
+      SELECT *
+      FROM FRIEND_REQUEST
+      WHERE ((sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?))
+        AND status = 'accepted'
+    `, [user1_id, user2_id, user2_id, user1_id]);
+
+    return result.length > 0;
+  } catch (error) {
+    console.error(error);
+    
+
+  }
+};
 
 
 
-export default {login, register, getAllUsersQuerry, getUserByIdQuerry, addImageForUser, addCoverForUser}
+
+
+export default {login, register, getAllUsersQuerry, getUserByIdQuerry, addImageForUser, addCoverForUser, areFriends}

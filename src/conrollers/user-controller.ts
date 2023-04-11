@@ -41,7 +41,14 @@ const addImageForUser = async (req: Request, res: Response) => {
     );
     res.send(addCoverForUser);
   };
+
+  const areFriends = async (req: Request, res: Response) => {
+    const user1_id = req.params.user1_id;
+    const user2_id = req.params.user2_id;
+    const areFriends = await userRepositories.areFriends(user1_id, user2_id);
+    res.send(areFriends);
+};
   
 
 
-export default{login, register, getAllUsers, getUserById, addImageForUser, addCoverForUser}
+export default{login, register, getAllUsers, getUserById, addImageForUser, addCoverForUser, areFriends}
