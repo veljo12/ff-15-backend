@@ -10,6 +10,8 @@ import dbConfig from "./common/db-config";
 import cors from 'cors';
 import path from "path";
 
+import chatsRouter from "./routing/chats-routing";
+
 
 const app = express();
 app.use(express.json());
@@ -22,6 +24,7 @@ app.use(cors());
 app.use("/games", gamesRouter);
 app.use("/clients", clientRouter);
 app.use("/users",userRouter);
+app.use("/users/chats",chatsRouter);
 app.use(fileUploadRouter);
 
 dbConfig
