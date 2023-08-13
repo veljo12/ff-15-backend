@@ -20,7 +20,7 @@ fileUploadRouter.post('/upload', fileUpload.single('img'),(request: Request, res
     if (!request.file) {
         response.send({
             status: -1, 
-            msg: 'No file uploade!'
+            msg: 'No file uploaded!'
         })
     }
     else {

@@ -11,6 +11,7 @@ import cors from 'cors';
 import path from "path";
 
 import chatsRouter from "./routing/chats-routing";
+import matchRouter from "./routing/match-routing";
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use("/games", gamesRouter);
 app.use("/clients", clientRouter);
 app.use("/users",userRouter);
 app.use("/users/chats",chatsRouter);
+app.use("/users/match", matchRouter);
 app.use(fileUploadRouter);
 
 dbConfig

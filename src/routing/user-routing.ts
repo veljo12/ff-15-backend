@@ -8,6 +8,8 @@ userRouter.route("")
                 
 userRouter.route("/:id")
                 .get(userController.getUserById);
+    
+
 
 userRouter.route('/login')
                 .post(userController.login);
@@ -33,11 +35,18 @@ userRouter.route('/:user1_id/friends/:user2_id/remove')
 
 userRouter.route('/:user1_id/friends/:user2_id/status').get(userController.checkFriendshipStatus);
 
+userRouter.route('/notifications/:sender_id/create/:receiver_id')
+                .post(userController.createNotification);
+
 userRouter.route('/notifications/:sender_id/send/:receiver_id')
                 .post(userController.sendFriendRequestNotification)
                 .delete(userController.deleteFriendRequestNotifications);
 
 userRouter.route('/notifications/:sender_id/accept/:receiver_id').post(userController.sendAcceptedFriendRequestNotification);
+
+userRouter.route('/notifications/:sender_id/accept-challenge/:receiver_id').post(userController.sendAcceptedChallengeNotification);
+
+userRouter.route('/notifications/:sender_id/challenge/:receiver_id').post(userController.sendChallengeNotification);
 
 userRouter.route('/notifications/unread/:id').get(userController.getUnreadNotifications);
 

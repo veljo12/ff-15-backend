@@ -12,17 +12,23 @@ const sendMessage = async (req: Request, res: Response) =>{
     res.send(sendMessage);
 };
 
-const getLastFiveMessages = async (req: Request, res: Response) => {
+const getAllMessages = async (req: Request, res: Response) => {
     const id = req.params.id;
-    const getLastFiveMessages = await chatsRepositories.getLastFiveMessages(id);
+    const getAllMessages = await chatsRepositories.getAllMessages(id);
 
-    res.send(getLastFiveMessages);
+    res.send(getAllMessages);
 }
 
 const getUnreadMessagesNumber = async (req: Request, res: Response) => {
     const id = req.params.id;
     const getUnreadMessagesNumber = await chatsRepositories.getUnreadMessagesNumber(id);
     res.send(getUnreadMessagesNumber);
+}
+
+const markMessagesAsRead = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const markMessagesAsRead = await chatsRepositories.markMessagesAsRead(id);
+    res.send(markMessagesAsRead);
 }
 
 const senderImagesForChat = async (req: Request, res: Response) => {
@@ -41,4 +47,4 @@ const getMessagesBetweenTwoUsers = async (req: Request, res: Response) => {
 }
 
 
-export default {sendMessage, getMessagesBetweenTwoUsers, getLastFiveMessages, getUnreadMessagesNumber,senderImagesForChat};
+export default {sendMessage, markMessagesAsRead, getMessagesBetweenTwoUsers, getAllMessages, getUnreadMessagesNumber,senderImagesForChat};

@@ -1,5 +1,3 @@
-
-
 import dbConfig from "../common/db-config";
 import User from "../models/user-model";
 import crypto from 'crypto';
@@ -18,6 +16,8 @@ const getAllUsersQuerry = async () => {
     );
     return result;
   };
+
+  
 
   
 const login = async (u: User) => {
@@ -172,6 +172,17 @@ const checkFriendshipStatus = async (user1_id: string, user2_id: string) => {
 
 // Notifications
 
+const createNotification = async (sender_id: string, receiver_id: string) => {
+  const result  = await dbConfig.manager.query(
+      `INSERT INTO NOTIFICATIONS (sender_id, receiver_id, status, is_read) 
+      VALUES (?, ?, 3, 0)`,
+      [sender_id, receiver_id]
+  );
+  const id = result.insertId;
+  return id; 
+};
+
+
 const sendFriendRequestNotification = async (sender_id: string, receiver_id: string) => {
   const result = await dbConfig.manager.query(`INSERT INTO NOTIFICATIONS (sender_id, receiver_id, status, is_read) VALUES (?, ?, ?, ?)`,[sender_id, receiver_id, 1, 0])
   return result;
@@ -188,6 +199,16 @@ const sendAcceptedFriendRequestNotification = async (sender_id: string, receiver
   const result = await dbConfig.manager.query(`INSERT INTO NOTIFICATIONS (sender_id, receiver_id, status, is_read) VALUES (?, ?, ?, ?)`,[sender_id, receiver_id, 2, 0])
   return result;
 }
+
+const sendAcceptedChallengeNotification = async (sender_id: string, receiver_id: string) => {
+  const result = await dbConfig.manager.query(`INSERT INTO NOTIFICATIONS (sender_id, receiver_id, status, is_read) VALUES (?, ?, ?, ?)`,[sender_id, receiver_id, 4, 0])
+  return result;
+}
+
+const sendChallengeNotification = async (sender_id: string, receiver_id: string) => {
+  const result = await dbConfig.manager.query(`INSERT INTO NOTIFICATIONS (sender_id, receiver_id, status, is_read) VALUES (?, ?, ?, ?)`,[sender_id, receiver_id, 3, 0])
+  return result;
+} /// Ima gore jos jedna Create Notification
 
 const getUnreadNotifications = async (id: string) => {
   const result = await dbConfig.manager.query(`SELECT COUNT(*) AS count
@@ -256,5 +277,5 @@ const getAllNotificationImages = async (id: string) => {
 
 
 
-export default {sendFriendRequestNotification,getAllNotificationImages,getSenderImages, getLastFiveNotifications, getAllNotifications, deleteFriendRequestNotifications, sendAcceptedFriendRequestNotification, markNotificationsAsRead, getUnreadNotifications,  login, register, getAllUsersQuerry, getUserByIdQuerry, addImageForUser,
+export default {sendFriendRequestNotification,sendAcceptedChallengeNotification, createNotification,sendChallengeNotification,getAllNotificationImages,getSenderImages, getLastFiveNotifications, getAllNotifications, deleteFriendRequestNotifications, sendAcceptedFriendRequestNotification, markNotificationsAsRead, getUnreadNotifications,  login, register, getAllUsersQuerry, getUserByIdQuerry, addImageForUser,
    addCoverForUser, sendFriendRequest,cancelFriendRequest,acceptFriendRequest, removeFriend, checkFriendshipStatus, areFriends}

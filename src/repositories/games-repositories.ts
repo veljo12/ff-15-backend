@@ -17,8 +17,8 @@ const getGameByIdQuerry = async (id: string) => {
 const insertGameQuerry = async (game: Game) => {
   try {
     const result = await dbConfig.manager.query(
-      `INSERT INTO GAMES (name_of_the_game, genre) VALUES (?, ?)`,
-      [game.name_of_the_game, game.genre]
+      `INSERT INTO GAMES (name_of_the_game, genre, image, cover) VALUES (?, ?, ?, ?)`,
+      [game.name_of_the_game, game.genre, game.image, game.cover]
     );
     return {
       success: true,

@@ -12,7 +12,11 @@ const getUnreadMessagesNumber = async (id: string) => {
       WHERE receiver_id = ? AND is_read = 0`, [id]);
     return result[0].count;
   }
-  const getLastFiveMessages = async (id: string) =>{
+  const markMessagesAsRead = async (id: string) => {
+    const result = await dbConfig.manager.query(`UPDATE CHATS SET is_read = 1 WHERE receiver_id = ? AND is_read = 0`, [id]);
+    return result;
+  }
+  const getAllMessages = async (id: string) =>{
     const result = await dbConfig.manager.query(`
     SELECT *
     FROM CHATS
@@ -21,6 +25,8 @@ const getUnreadMessagesNumber = async (id: string) => {
     
   `, [id, id]);
 return result}
+
+
 
 const senderImagesForChat = async (id: string) => {
   const result = await dbConfig.manager.query(`
@@ -43,4 +49,4 @@ const getMessagesBetweenTwoUsers = async (sender_id: string, receiver_id: string
 }
 
 
-export default {sendMessage, getMessagesBetweenTwoUsers, getLastFiveMessages, getUnreadMessagesNumber,senderImagesForChat};
+export default {sendMessage,markMessagesAsRead, getMessagesBetweenTwoUsers, getAllMessages, getUnreadMessagesNumber,senderImagesForChat};

@@ -15,6 +15,7 @@ const getUserById = async (req: Request, res: Response) => {
 };
 
 
+
 const login = async (req: Request, res: Response) => {
     const result = await userRepositories.login(req.body);
     res.send(result);
@@ -113,6 +114,31 @@ const sendAcceptedFriendRequestNotification = async (req: Request, res: Response
   const sendAcceptedFriendRequestNotification = await userRepositories.sendAcceptedFriendRequestNotification(sender_id,receiver_id);
   res.send(sendAcceptedFriendRequestNotification);
 };
+const sendAcceptedChallengeNotification = async (req: Request, res: Response) => {
+  const sender_id = req.params.sender_id;
+  const receiver_id = req.params.receiver_id;
+
+  const sendAcceptedChallengeNotification = await userRepositories.sendAcceptedChallengeNotification(sender_id,receiver_id);
+  res.send(sendAcceptedChallengeNotification);
+};
+
+
+const sendChallengeNotification = async (req: Request, res: Response) => {
+  const sender_id = req.params.sender_id;
+  const receiver_id = req.params.receiver_id;
+
+  const sendChallengeNotification = await userRepositories.sendChallengeNotification(sender_id,receiver_id);
+  res.send(sendChallengeNotification);
+};
+
+const createNotification = async (req: Request, res: Response) => {
+  const sender_id = req.params.sender_id;
+  const receiver_id = req.params.receiver_id;
+
+  const id = await userRepositories.createNotification(sender_id, receiver_id);
+
+  res.send({ id });
+};
 
 const getUnreadNotifications = async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -155,5 +181,5 @@ const getAllNotificationImages = async (req: Request, res: Response) => {
 }
 
 
-export default{login,getAllNotificationImages, getSenderImages, markNotificationsAsRead, getLastFiveNotifications, getAllNotifications, deleteFriendRequestNotifications, getUnreadNotifications, sendAcceptedFriendRequestNotification, sendFriendRequestNotification, register, getAllUsers, getUserById, addImageForUser, 
+export default{login,getAllNotificationImages,sendAcceptedChallengeNotification, createNotification,sendChallengeNotification, getSenderImages, markNotificationsAsRead, getLastFiveNotifications, getAllNotifications, deleteFriendRequestNotifications, getUnreadNotifications, sendAcceptedFriendRequestNotification, sendFriendRequestNotification, register, getAllUsers, getUserById, addImageForUser, 
   addCoverForUser, sendFriendRequest,cancelFriendRequest, acceptFriendRequest, removeFriend, checkFriendshipStatus,  areFriends}

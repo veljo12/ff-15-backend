@@ -7,7 +7,8 @@ chatsRouter.route('/:sender_id/message/:receiver_id')
                             .get(chatsController.getMessagesBetweenTwoUsers)
                             .post(chatsController.sendMessage);
 
-chatsRouter.route('/last/:id').get(chatsController.getLastFiveMessages);
+chatsRouter.route('/messages/:id').get(chatsController.getAllMessages)
+                                  .put(chatsController.markMessagesAsRead);
 
 chatsRouter.route('/unread/:id').get(chatsController.getUnreadMessagesNumber);
 
